@@ -4,6 +4,7 @@ jobs:
       - image: docker:18.09-git
     steps:
       - checkout
+      - setup_remote_docker
       - run:
           name: Build image
           command: docker build -t trivy-ci-test:latest .
