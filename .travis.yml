@@ -3,10 +3,10 @@ services:
 
 before_install:
   - docker build -t trivy-ci-test:latest .
-  - wget https://github.com/knqyf263/trivy/releases/download/v0.0.3/trivy_0.0.3_Linux-64bit.tar.gz
-  - tar zxvf trivy_0.0.3_Linux-64bit.tar.gz
+  - wget https://github.com/knqyf263/trivy/releases/download/v0.0.4/trivy_0.0.4_Linux-64bit.tar.gz
+  - tar zxvf trivy_0.0.4_Linux-64bit.tar.gz
 script:
-  - ./trivy --debug --exit-code 0 trivy-ci-test:latest
+  - ./trivy --exit-code 0 --quiet trivy-ci-test:latest
 cache:
   directories:
-    - /root/.cache/trivy/
+    - $HOME/.cache/trivy
