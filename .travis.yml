@@ -1,0 +1,10 @@
+services:
+  - docker
+
+before_install:
+  - docker build -t trivy-ci-test:latest .
+  - wget https://github.com/knqyf263/trivy/releases/download/v0.0.3/trivy_0.0.3_Linux-64bit.tar.gz
+  - tar zxvf trivy_0.0.3_Linux-64bit.tar.gz
+  - mv trivy /usr/local/bin
+script:
+  - trivy --exit-code 1 trivy-ci-test:latest
