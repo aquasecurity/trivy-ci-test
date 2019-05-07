@@ -1,0 +1,23 @@
+jobs:
+  build:
+    docker:
+      - image: 18.06.3-ce-git
+    steps:
+      - checkout
+      - run:
+          name: Build image
+          command: docker build -t trivy-ci-test:latest .
+      - run:
+          name: Install trivy
+          command: |
+            wget https://github.com/knqyf263/trivy/releases/download/v0.0.2/trivy_0.0.2_Linux-64bit.tar.gz
+            tar zxvf trivy_0.0.2_Linux-64bit.tar.gz
+            mv trivy /usr/local/bin
+      - run:
+          name: Scan the local image with trivy
+          command: trivy --exit-code 1 trivy-ci-test:latest
+workflows:
+  version: 2
+  release:
+    jobs:  
+      - build
