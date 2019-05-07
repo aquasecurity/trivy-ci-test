@@ -1,7 +1,7 @@
 jobs:
   build:
     docker:
-      - image: 18.06.3-ce-git
+      - image: docker:18.09-git
     steps:
       - checkout
       - run:
