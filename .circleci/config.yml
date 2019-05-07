@@ -22,7 +22,7 @@ jobs:
       - save_cache:
           key: vulnerability-db
           paths:
-            - /root/.cache/trivy
+            - $HOME/.cache/trivy
 workflows:
   version: 2
   release:
