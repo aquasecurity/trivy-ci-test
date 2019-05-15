@@ -9,7 +9,7 @@ jobs:
           key: vulnerability-db
       - run:
           name: Build image
-          command: docker build -t trivy-ci-test:latest .
+          command: docker build -t trivy-ci-test:${CIRCLE_SHA1} .
       - run:
           name: Install trivy
           command: |
@@ -18,7 +18,7 @@ jobs:
             mv trivy /usr/local/bin
       - run:
           name: Scan the local image with trivy
-          command: trivy --exit-code 0 --quiet trivy-ci-test:latest
+          command: trivy --exit-code 0 --quiet trivy-ci-test:${CIRCLE_SHA1}
       - save_cache:
           key: vulnerability-db
           paths:
