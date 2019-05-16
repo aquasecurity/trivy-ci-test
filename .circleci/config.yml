@@ -13,8 +13,8 @@ jobs:
       - run:
           name: Install trivy
           command: |
-            wget https://github.com/knqyf263/trivy/releases/download/v0.0.4/trivy_0.0.4_Linux-64bit.tar.gz
-            tar zxvf trivy_0.0.4_Linux-64bit.tar.gz
+            wget https://github.com/knqyf263/trivy/releases/download/v0.0.13/trivy_0.0.13_Linux-64bit.tar.gz
+            tar zxvf trivy_0.0.13_Linux-64bit.tar.gz
             mv trivy /usr/local/bin
       - run:
           name: Scan the local image with trivy
