@@ -25,7 +25,7 @@ jobs:
             mv trivy /usr/local/bin
       - run:
           name: Scan the local image with trivy
-          command: trivy --exit-code 0 --quiet trivy-ci-test:${CIRCLE_SHA1}
+          command: trivy --exit-code 0 --quiet --auto-refresh trivy-ci-test:${CIRCLE_SHA1}
       - save_cache:
           key: vulnerability-db
           paths:
