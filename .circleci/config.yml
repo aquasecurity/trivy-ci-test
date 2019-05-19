@@ -13,12 +13,19 @@ jobs:
       - run:
           name: Install trivy
           command: |
-            wget https://github.com/knqyf263/trivy/releases/download/v0.0.13/trivy_0.0.13_Linux-64bit.tar.gz
-            tar zxvf trivy_0.0.13_Linux-64bit.tar.gz
+            apk add --update curl
+            VERSION=$(
+                curl --silent "https://api.github.com/repos/knqyf263/trivy/releases/latest" | \
+                grep '"tag_name":' | \
+                sed -E 's/.*"v([^"]+)".*/\1/'
+            )
+
+            wget https://github.com/knqyf263/trivy/releases/download/v${VERSION}/trivy_${VERSION}_Linux-64bit.tar.gz
+            tar zxvf trivy_${VERSION}_Linux-64bit.tar.gz
             mv trivy /usr/local/bin
       - run:
           name: Scan the local image with trivy
-          command: trivy --exit-code 0 --quiet trivy-ci-test:${CIRCLE_SHA1}
+          command: trivy --exit-code 0 --quiet --auto-refresh trivy-ci-test:${CIRCLE_SHA1}
       - save_cache:
           key: vulnerability-db
           paths:
@@ -26,5 +33,5 @@ jobs:
 workflows:
   version: 2
   release:
-    jobs:  
+    jobs:
       - build
