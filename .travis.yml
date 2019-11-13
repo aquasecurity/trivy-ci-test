@@ -7,12 +7,12 @@ env:
 
 before_install:
   - docker build -t trivy-ci-test:${COMMIT} .
-  - export VERSION=$(curl --silent "https://api.github.com/repos/knqyf263/trivy/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
-  - wget https://github.com/knqyf263/trivy/releases/download/v${VERSION}/trivy_${VERSION}_Linux-64bit.tar.gz
+  - export VERSION=$(curl --silent "https://api.github.com/repos/aquasecurity/trivy/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
+  - wget https://github.com/aquasecurity/trivy/releases/download/v${VERSION}/trivy_${VERSION}_Linux-64bit.tar.gz
   - tar zxvf trivy_${VERSION}_Linux-64bit.tar.gz
 script:
-  - ./trivy --exit-code 0 --severity HIGH --quiet --auto-refresh trivy-ci-test:${COMMIT}
-  - ./trivy --exit-code 1 --severity CRITICAL --quiet --auto-refresh trivy-ci-test:${COMMIT}
+  - ./trivy --exit-code 0 --severity HIGH --no-progress trivy-ci-test:${COMMIT}
+  - ./trivy --exit-code 1 --severity CRITICAL --no-progress trivy-ci-test:${COMMIT}
 cache:
   directories:
     - $HOME/.cache/trivy
