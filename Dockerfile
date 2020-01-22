@@ -1,7 +1,7 @@
 FROM composer:1.7.2
 
-ADD composer_laravel.lock /php-app/composer.lock
-ADD Gemfile_rails.lock /ruby-app/Gemfile.lock
-ADD package-lock_react.json /node-app/package-lock.json
-ADD Pipfile.lock /python-app/Pipfile.lock
-ADD Cargo.lock /rust-app/Cargo.lock
+COPY composer_laravel.lock /php-app/composer.lock
+COPY Gemfile_rails.lock /ruby-app/Gemfile.lock
+COPY package-lock_react.json /node-app/package-lock.json
+COPY Pipfile.lock /python-app/Pipfile.lock
+COPY Cargo.lock /rust-app/Cargo.lock
