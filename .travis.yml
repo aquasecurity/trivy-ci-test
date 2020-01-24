@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker
+
+script:
+  - docker build --tag myimage .
+
+after_script:
+  - docker images
