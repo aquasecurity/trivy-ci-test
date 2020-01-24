@@ -1,9 +1,9 @@
-services:
-  - docker
+language: python
 
-env:
-  global:
-    - COMMIT=${TRAVIS_COMMIT::8}
+python:
 
-before_install:
-  - docker build -t trivy-ci-test:${COMMIT} .
+  - "2.7"
+
+script: 
+
+  - python print("hello world")
