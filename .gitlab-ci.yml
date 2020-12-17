@@ -10,7 +10,7 @@ stages:
 
 include:
   # Trivy integration with GitLab Container Scanning
-  - remote: "https://github.com/aquasecurity/trivy/raw/master/contrib/Trivy.gitlab-ci.yml"
+  - remote: "https://github.com/aquasecurity/trivy/raw/main/contrib/Trivy.gitlab-ci.yml"
 
 build:
   image: docker:stable
