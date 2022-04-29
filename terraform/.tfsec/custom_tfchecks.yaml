@@ -1,0 +1,30 @@
+---
+checks:
+  - code: some check
+    description:
+    requiredTypes:
+      - resource
+    requiredLabels:
+      -
+    severity: MEDIUM
+    matchSpec:
+    name:
+    action:
+    value:
+    errorMessage:
+    relatedLinks:
+      -
+  - code:
+    description:
+    requiredTypes:
+      - resource
+    requiredLabels:
+      -
+    severity: MEDIUM
+    matchSpec:
+    name:
+    action:
+    value:
+    errorMessage:
+    relatedLinks:
+      -
